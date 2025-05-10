@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
@@ -8,6 +9,13 @@ import subscriptionRoutes from './routes/subscriptionRoutes';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Configuración de CORS
+app.use(cors({
+  origin: ['http://localhost:5173','https://suscridash-mockup.vercel.app/'], // Cambia esta URL por la URL de tu frontend si es diferente
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 app.use(express.json());
 
